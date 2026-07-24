@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>विवाह बंधन - प्रत्याशी पंजीयन पत्रक</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FBF6EC;
+    --paper:#FFFDF8;
+    --maroon:#7B1428;
+    --maroon-dark:#500A16;
+    --gold:#C99A3E;
+    --gold-light:#F0D48E;
+    --ink:#2B2420;
+    --muted:#7A6C5F;
+    --rose-tint:#FBEDEA;
+    --success:#3F7A5C;
+    --success-bg:#EAF4EE;
+    --error:#B3261E;
+    --error-bg:#FBECEB;
+    --border:#E6DCCB;
+    --shadow: 0 10px 30px rgba(90,20,25,0.08);
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(201,154,62,0.10), transparent 45%),
+      radial-gradient(circle at 100% 20%, rgba(123,20,40,0.06), transparent 40%),
+      var(--ivory);
+    margin:0; padding:32px 16px 80px; color:var(--ink);
+    display:flex; justify-content:center;
+  }
+  h1,h2,h3,label,.devnote,.om-chant,.div-title,.box-text,.notice,.declaration,.notes{
+    font-family:'Noto Serif Devanagari',serif;
+  }
+  .main-container{
+    background:var(--paper);
+    width:100%; max-width:960px;
+    box-shadow:var(--shadow);
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid var(--border);
+  }
+
+  /* ---------- Toran garland (signature element) ---------- */
+  #toran{ width:100%; height:34px; display:block; background:var(--maroon-dark); }
+  #toran svg{ width:100%; height:100%; display:block; }
+
+  /* ---------- Header ---------- */
+  .form-header{
+    text-align:center;
+    background:linear-gradient(180deg,var(--maroon) 0%, var(--maroon-dark) 100%);
+    color:var(--ivory);
+    padding:26px 30px 34px;
+    position:relative;
+  }
+  .om-chant{ font-size:1.05em; letter-spacing:.5px; color:var(--gold-light); margin-bottom:6px; font-weight:600;}
+  .org-name{ font-size:1.7em; color:#fff; margin:2px 0; font-weight:700; text-shadow:0 1px 2px rgba(0,0,0,.25);}
+  .convene{ color:var(--gold-light); margin:2px 0 14px; font-size:0.95em;}
+  .main-title{
+    font-size:3.2em; font-weight:700; margin:6px 0 2px; color:#fff;
+    letter-spacing:1px;
+    position:relative; display:inline-block;
+  }
+  .main-title::after{
+    content:""; display:block; width:120px; height:3px; margin:8px auto 0;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    border-radius:2px;
+  }
+  .tagline{ font-style:italic; color:var(--gold-light); font-size:1.05em; margin:6px 0 16px;}
+  .div-title{ font-size:1.15em; font-weight:700; color:#fff; margin-top:4px;}
+  .event-details{
+    margin:16px auto 0; max-width:640px; font-size:0.92em; line-height:1.7;
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18);
+    border-radius:10px; padding:12px 18px;
+  }
+  .event-details p{ margin:4px 0;}
+  .event-details strong{ color:var(--gold-light);}
+
+  /* ---------- Form body ---------- */
+  form{ padding:8px 34px 34px;}
+  .form-section{ margin-bottom:8px; padding:26px 0; border-bottom:1px dashed var(--border);}
+  .form-section:last-of-type{ border-bottom:none;}
+  .section-title-row{ display:flex; align-items:flex-start; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+  .section-title{
+    font-size:1.32em; font-weight:700; color:var(--maroon); margin:0 0 20px;
+    padding-bottom:6px; border-bottom:3px solid var(--gold); display:inline-block;
+  }
+  .section-sub{ font-size:.85em; color:var(--muted); font-weight:400; margin:-14px 0 18px;}
+
+  .row{ display:flex; flex-wrap:wrap; gap:16px; margin-bottom:16px;}
+  .col{ flex:1 1 calc(50% - 16px); display:flex; flex-direction:column; min-width:150px;}
+  .full-width{ flex-basis:100%;}
+  .three-col{ flex:1 1 calc(33.333% - 16px);}
+  .five-cols .col{ flex:1 1 calc(33.333% - 16px);}
+
+  label{ font-weight:600; margin-bottom:6px; font-size:.88em; color:var(--muted); letter-spacing:.2px;}
+  input[type="text"], input[type="email"], input[type="number"], input[type="date"], input[type="time"], textarea, select{
+    width:100%; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px;
+    box-sizing:border-box; font-size:.95em; font-family:'Poppins',sans-serif; color:var(--ink);
+    background:#fff; transition:border-color .15s, box-shadow .15s;
+  }
+  textarea{ resize:vertical;}
+  input:focus, textarea:focus, select:focus{
+    outline:none; border-color:var(--maroon); box-shadow:0 0 0 3px rgba(123,20,40,0.12);
+  }
+  input.invalid, textarea.invalid{ border-color:var(--error); box-shadow:0 0 0 3px rgba(179,38,30,0.10);}
+
+  .checks{ display:flex; gap:18px; align-items:center; flex-wrap:wrap; padding-top:4px;}
+  .checks label{ font-weight:400; display:flex; align-items:center; gap:6px; margin:0; cursor:pointer; font-size:.92em; color:var(--ink);}
+  input[type="radio"], input[type="checkbox"]{ accent-color:var(--maroon); width:16px; height:16px; cursor:pointer;}
+
+  /* digit boxes (pincode / mobile) */
+  .digit-boxes{ display:flex; gap:6px; flex-wrap:wrap;}
+  .digit-boxes input{
+    width:34px; height:40px; border:1.5px solid var(--border); border-radius:6px;
+    text-align:center; font-size:1.05em; padding:0; font-family:'Poppins',sans-serif; font-weight:600;
+  }
+  .digit-boxes input:focus{ border-color:var(--maroon); box-shadow:0 0 0 3px rgba(123,20,40,0.12);}
+
+  .name-prefix{ display:flex; align-items:center; gap:8px;}
+  .name-prefix span.prefix{ font-weight:700; color:var(--maroon); font-size:.98em; white-space:nowrap;}
+
+  .count-input{ display:flex; gap:10px;}
+  .count-input input{ width:calc(50% - 5px);}
+
+  /* ---------- Photo frame (top-right of biodata section) ---------- */
+  .photo-frame-wrap{ display:flex; flex-direction:column; align-items:center; gap:8px; width:170px; flex-shrink:0;}
+  .photo-frame{
+    width:150px; height:190px; /* ~35:45 passport ratio */
+    border:2px dashed var(--gold);
+    border-radius:10px;
+    background:var(--rose-tint);
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden; cursor:pointer;
+    transition:border-color .15s, background .15s;
+  }
+  .photo-frame:hover{ border-color:var(--maroon); background:#F7E9E7;}
+  .photo-frame img{ width:100%; height:100%; object-fit:cover; display:none;}
+  .photo-frame .placeholder{ text-align:center; color:var(--muted); font-size:.78em; padding:10px; line-height:1.5;}
+  .photo-frame .placeholder .icon{ font-size:1.8em; display:block; margin-bottom:4px; color:var(--gold);}
+  .photo-hint{ font-size:.72em; color:var(--muted); text-align:center; line-height:1.5;}
+  .photo-remove{
+    display:none; margin-top:2px; font-size:.75em; color:var(--error); background:none; border:none;
+    cursor:pointer; text-decoration:underline; font-family:'Poppins',sans-serif;
+  }
+
+  /* ---------- Declaration / notice ---------- */
+  .declaration{ font-size:.95em; line-height:1.8; color:var(--ink); background:var(--rose-tint); padding:16px 18px; border-radius:10px; border-left:4px solid var(--maroon);}
+  .declaration label{ display:flex; align-items:flex-start; gap:10px; font-weight:400; color:var(--ink); cursor:pointer; font-size:1em;}
+  .declaration input{ margin-top:4px;}
+
+  .separator{ border-top:1px dashed var(--border); margin:22px 0;}
+  .office-use{ margin-top:22px; padding:16px 18px; border:1.5px dashed var(--gold); border-radius:10px; background:#FBF8EF; position:relative;}
+  .office-use-tag{ position:absolute; top:-11px; left:16px; background:var(--gold); color:#fff; font-size:.7em; font-weight:700; padding:2px 10px; border-radius:20px; font-family:'Poppins',sans-serif; letter-spacing:.3px;}
+  .office-use input:disabled{ background:#F3EEE1; color:var(--muted); cursor:not-allowed;}
+  .deadline-banner{ text-align:center; background:rgba(240,212,142,0.15); border:1px solid rgba(240,212,142,0.4); color:var(--gold-light); font-weight:600; padding:10px 16px; border-radius:8px; margin-bottom:20px; font-size:.95em;}
+  .notice{ background:#FBF8EF; padding:18px 20px; border-radius:10px; border-left:4px solid var(--gold);}
+  .notice h4{ margin:0 0 10px; color:var(--maroon); font-family:'Noto Serif Devanagari',serif; font-size:1.1em;}
+  .notes ol{ padding-left:20px; margin:0; font-size:.93em; line-height:1.9; color:var(--muted);}
+
+  /* ---------- Document upload section ---------- */
+  .doc-upload-grid{ display:flex; gap:20px; flex-wrap:wrap;}
+  .doc-card{
+    flex:1 1 280px; border:1.5px solid var(--border); border-radius:12px; padding:18px;
+    background:#fff; display:flex; flex-direction:column; gap:10px;
+  }
+  .doc-card h4{ margin:0; font-size:1.02em; color:var(--maroon); display:flex; align-items:center; gap:8px;}
+  .doc-card .req-tag{ font-size:.68em; background:var(--maroon); color:#fff; padding:2px 8px; border-radius:20px; font-family:'Poppins',sans-serif; font-weight:600; letter-spacing:.3px;}
+  .doc-card .opt-tag{ font-size:.68em; background:var(--muted); color:#fff; padding:2px 8px; border-radius:20px; font-family:'Poppins',sans-serif; font-weight:600; letter-spacing:.3px;}
+  .drop-zone{
+    border:2px dashed var(--border); border-radius:10px; padding:18px; text-align:center;
+    cursor:pointer; transition:.15s; background:var(--ivory); font-size:.85em; color:var(--muted);
+  }
+  .drop-zone.dragover{ border-color:var(--maroon); background:var(--rose-tint);}
+  .drop-zone strong{ color:var(--maroon);}
+  .file-status{ font-size:.82em; display:none; flex-direction:column; gap:5px; padding:10px 12px; border-radius:8px;}
+  .file-status.ok{ display:flex; background:var(--success-bg); color:var(--success);}
+  .file-status.bad{ display:flex; background:var(--error-bg); color:var(--error);}
+  .file-status .check-row{ display:flex; align-items:center; gap:6px;}
+  .doc-preview{ display:none; width:100%; max-height:150px; object-fit:contain; border-radius:8px; border:1px solid var(--border);}
+  .doc-specs{ font-size:.75em; color:var(--muted); line-height:1.6;}
+
+  /* ---------- Footer ---------- */
+  .form-footer{
+    background:var(--maroon-dark); color:var(--ivory);
+    padding:28px 34px 34px; margin-top:10px;
+  }
+  .form-footer h3{ color:var(--gold-light); font-size:1.1em; margin:0 0 14px;}
+  .submission-addresses .addr{ display:flex; gap:10px; align-items:flex-start; margin-bottom:12px; font-size:.9em; line-height:1.6;}
+  .addr .num{ font-weight:700; color:var(--gold-light); font-family:'Noto Serif Devanagari',serif;}
+  .contacts{ text-align:center; margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.15); font-size:.9em; color:var(--gold-light);}
+
+  .submit-container{ text-align:center; margin:26px 0 8px;}
+  .submit-btn{
+    background:linear-gradient(180deg, var(--maroon) 0%, var(--maroon-dark) 100%);
+    color:#fff; padding:14px 42px; border:none; border-radius:8px; font-size:1.15em; font-weight:600;
+    cursor:pointer; font-family:'Noto Serif Devanagari',serif; box-shadow:0 6px 16px rgba(123,20,40,0.3);
+    transition:transform .12s, box-shadow .12s;
+  }
+  .submit-btn:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(123,20,40,0.38);}
+  .form-msg{ text-align:center; font-size:.88em; margin-top:12px; color:var(--error); display:none;}
+
+  /* ---------- Success overlay ---------- */
+  .success-panel{
+    display:none; text-align:center; padding:60px 34px; background:var(--paper);
+  }
+  .success-panel .tick{ width:70px; height:70px; border-radius:50%; background:var(--success-bg); color:var(--success);
+    display:flex; align-items:center; justify-content:center; font-size:2.2em; margin:0 auto 18px;}
+  .success-panel h2{ color:var(--maroon); margin:0 0 8px;}
+  .success-panel p{ color:var(--muted); margin:4px 0;}
+  .reg-id{ font-weight:700; color:var(--maroon); letter-spacing:1px;}
+  .success-actions{ margin-top:24px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .success-actions button{
+    padding:11px 26px; border-radius:8px; border:1.5px solid var(--maroon); background:#fff; color:var(--maroon);
+    font-family:'Noto Serif Devanagari',serif; font-size:1em; cursor:pointer; font-weight:600;
+  }
+  .success-actions button.primary{ background:var(--maroon); color:#fff;}
+
+  @media print{
+    body{ background:#fff; padding:0;}
+    .main-container{ box-shadow:none; border:none; max-width:100%;}
+    #toran, .submit-container, .form-msg{ display:none !important;}
+    .form-footer{ background:#fff !important; color:var(--ink) !important;}
+    .form-footer h3, .addr .num, .contacts{ color:var(--maroon) !important;}
+  }
+
+  @media (max-width:640px){
+    form{ padding:6px 18px 26px;}
+    .main-title{ font-size:2.1em;}
+    .org-name{ font-size:1.25em;}
+    .col{ flex-basis:100%;}
+    .section-title-row{ flex-direction:column; align-items:center; text-align:center;}
+    .photo-frame-wrap{ width:140px;}
+    .checks{ flex-direction:column; align-items:flex-start; gap:6px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="main-container">
+  <div id="toran"></div>
+
+  <header class="form-header">
+    <div class="om-chant">।। वन्दे श्री गुरू तरणम् ।।</div>
+    <h2 class="org-name">श्री तारण तरण दिगम्बर जैन समाज छिंदवाड़ा</h2>
+    <p class="convene">के तत्वावधान में परिचय सम्मेलन</p>
+    <h1 class="main-title">विवाह बंधन</h1>
+    <p class="tagline">मैं से हम की ओर...</p>
+    <div class="div-title">दो दिवसीय प्रत्याशी पंजीयन पत्रक</div>
+    <div class="event-details">
+      <p><strong>दिनांक:</strong> 24 दिसंबर शनिवार एवं 25 दिसंबर 2022 रविवार</p>
+      <p><strong>आयोजन स्थल:</strong> आशीर्वाद लॉन, मोहल्ला इमलिपा, ढांड रोड, छिंदवाड़ा (म.प्र.)</p>
+      <p><strong>आयोजक:</strong> श्री तारण तरण दिगम्बर जैन नवयुवक मंडल, छिंदवाड़ा (म.प्र.)</p>
+    </div>
+  </header>
+
+  <form id="regForm" novalidate>
+
+    <!-- ============ BIODATA ============ -->
+    <section class="form-section biodata">
+      <div class="section-title-row">
+        <div style="flex:1; min-width:240px;">
+          <h3 class="section-title">प्रत्याशी परिचय विवरण (बालक / बालिका)</h3>
+        </div>
+        <div class="photo-frame-wrap">
+          <div class="photo-frame" id="photoFrame" tabindex="0" role="button" aria-label="फोटो अपलोड करें">
+            <img id="photoPreview" alt="प्रत्याशी फोटो">
+            <div class="placeholder" id="photoPlaceholder">
+              <span class="icon">&#128247;</span>
+              यहाँ क्लिक करके<br>फोटो अपलोड करें
+            </div>
+          </div>
+          <div class="photo-hint">पासपोर्ट साइज़ फोटो<br>(अनुपात 35:45, JPEG/PNG, अधिकतम 2MB)</div>
+          <button type="button" class="photo-remove" id="photoRemoveBtn">हटाएं / बदलें</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col full-width">
+          <label for="fullName">नाम: <span style="color:var(--error)">*</span></label>
+          <input type="text" id="fullName" name="fullName" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col"><label for="education">शैक्षणिक योग्यता:</label><input type="text" id="education" name="education"></div>
+        <div class="col"><label for="otherQualify">अतिरिक्त योग्यता:</label><input type="text" id="otherQualify" name="otherQualify"></div>
+      </div>
+
+      <div class="row">
+        <div class="col three-col"><label for="occupation">व्यवसाय/पेशा:</label><input type="text" id="occupation" name="occupation"></div>
+        <div class="col three-col"><label for="post">पद:</label><input type="text" id="post" name="post"></div>
+        <div class="col three-col"><label for="monthlyIncome">मासिक आय:</label><input type="text" id="monthlyIncome" name="monthlyIncome"></div>
+      </div>
+
+      <div class="row">
+        <div class="col full-width"><label for="businessAddress">व्यावसायिक पता:</label><textarea id="businessAddress" rows="2"></textarea></div>
+      </div>
+
+      <div class="row five-cols">
+        <div class="col"><label for="district">जिला:</label><input type="text" id="district"></div>
+        <div class="col"><label for="state">राज्य:</label><input type="text" id="state"></div>
+        <div class="col">
+          <label>पिन:</label>
+          <div class="digit-boxes" data-group="pin1">
+            <input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>मो.नं.: <span style="color:var(--error)">*</span></label>
+          <div class="digit-boxes" data-group="mobile">
+            <input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric">
+          </div>
+        </div>
+        <div class="col">
+          <label>व्हॉट्सएप नं.:</label>
+          <div class="digit-boxes" data-group="whatsapp">
+            <input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col"><label for="email">ई-मेल:</label><input type="email" id="email"></div>
+        <div class="col"><label for="birthDate">जन्म तिथि:</label><input type="date" id="birthDate"></div>
+        <div class="col"><label for="birthDateWords">शब्दों में:</label><input type="text" id="birthDateWords"></div>
+      </div>
+
+      <div class="row">
+        <div class="col"><label for="birthPlace">जन्म स्थान (नगर):</label><input type="text" id="birthPlace"></div>
+        <div class="col"><label for="birthDistrict">जिला:</label><input type="text" id="birthDistrict"></div>
+        <div class="col"><label for="birthState">राज्य:</label><input type="text" id="birthState"></div>
+        <div class="col"><label for="birthTime">जन्म समय:</label><input type="time" id="birthTime"></div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>वर्ण:</label>
+          <div class="checks">
+            <label><input type="radio" name="color"> गौर</label>
+            <label><input type="radio" name="color"> गेहुआ</label>
+          </div>
+        </div>
+        <div class="col">
+          <label for="heightFeet">ऊँचाई:</label>
+          <div class="count-input">
+            <input type="number" id="heightFeet" placeholder="फिट">
+            <input type="number" id="heightInch" placeholder="इंच">
+          </div>
+        </div>
+        <div class="col"><label for="weight">वजन (kg):</label><input type="number" id="weight"></div>
+      </div>
+
+      <div class="row">
+        <div class="col"><label for="gotraSelf">गोत्र (स्वयं का):</label><input type="text" id="gotraSelf"></div>
+        <div class="col"><label for="gotraNani">गोत्र (ननिहाल पक्ष का):</label><input type="text" id="gotraNani"></div>
+        <div class="col">
+          <label>मांगलिक हैं?</label>
+          <div class="checks">
+            <label><input type="radio" name="manglik"> हाँ</label>
+            <label><input type="radio" name="manglik"> नहीं</label>
+            <label><input type="radio" name="manglik"> पता नहीं</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col full-width"><label for="disabledDetails">विकलांगता की जानकारी (यदि हो तो):</label><input type="text" id="disabledDetails"></div>
+      </div>
+    </section>
+
+    <!-- ============ FAMILY ============ -->
+    <section class="form-section family">
+      <h3 class="section-title">पारिवारिक परिचय</h3>
+
+      <div class="row">
+        <div class="col">
+          <label for="fatherName">पिता का नाम: <span style="color:var(--error)">*</span></label>
+          <div class="name-prefix"><span class="prefix">श्री.</span><input type="text" id="fatherName" required></div>
+        </div>
+        <div class="col">
+          <label for="motherName">माता का नाम: <span style="color:var(--error)">*</span></label>
+          <div class="name-prefix"><span class="prefix">श्रीमती.</span><input type="text" id="motherName" required></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col three-col"><label for="parentOccupation">व्यवसाय:</label><input type="text" id="parentOccupation"></div>
+        <div class="col three-col"><label for="parentIncome">मासिक आय:</label><input type="text" id="parentIncome"></div>
+        <div class="col three-col">
+          <label>आवास:</label>
+          <div class="checks">
+            <label><input type="radio" name="residency"> स्वयं का</label>
+            <label><input type="radio" name="residency"> किराये का</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col full-width">
+          <label for="permanentAddress">स्थायी पता: <span style="color:var(--error)">*</span></label>
+          <textarea id="permanentAddress" rows="2" required></textarea>
+        </div>
+      </div>
+
+      <div class="row five-cols">
+        <div class="col"><label for="permDistrict">जिला:</label><input type="text" id="permDistrict"></div>
+        <div class="col"><label for="permState">राज्य:</label><input type="text" id="permState"></div>
+        <div class="col">
+          <label>पिन:</label>
+          <div class="digit-boxes" data-group="pin2">
+            <input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col three-col"><label for="elderBrothers">बड़े भाई (विवाहित / अविवाहित):</label><input type="text" id="elderBrothers" placeholder="जैसे: 1 विवाहित"></div>
+        <div class="col three-col"><label for="elderSisters">बड़ी बहन (विवाहित / अविवाहित):</label><input type="text" id="elderSisters" placeholder="जैसे: 2 विवाहित"></div>
+        <div class="col three-col"><label for="youngerSiblings">छोटे भाई-बहन:</label><input type="text" id="youngerSiblings" placeholder="जैसे: 1 भाई, 1 बहन"></div>
+      </div>
+
+    </section>
+
+    <!-- ============ REFERENCES ============ -->
+    <section class="form-section references">
+      <h3 class="section-title">अन्य संपर्क सूत्र</h3>
+      <p class="section-sub">कृपया कम से कम दो संपर्क सूत्रों का विवरण दें।</p>
+
+      <div class="ref-block">
+        <div class="row">
+          <div class="col"><label for="ref1Name">श्रीमान:</label><input type="text" id="ref1Name"></div>
+          <div class="col"><label for="ref1Relation">संबंध:</label><input type="text" id="ref1Relation"></div>
+        </div>
+        <div class="row"><div class="col full-width"><label for="ref1Address">पता:</label><textarea id="ref1Address" rows="2"></textarea></div></div>
+        <div class="row five-cols">
+          <div class="col"><label for="ref1State">राज्य:</label><input type="text" id="ref1State"></div>
+          <div class="col">
+            <label>पिन कोड:</label>
+            <div class="digit-boxes" data-group="ref1pin">
+              <input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric">
+            </div>
+          </div>
+          <div class="col">
+            <label>मो.नं.:</label>
+            <div class="digit-boxes" data-group="ref1mobile">
+              <input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="ref-block">
+        <div class="row">
+          <div class="col"><label for="ref2Name">श्रीमान:</label><input type="text" id="ref2Name"></div>
+          <div class="col"><label for="ref2Relation">संबंध:</label><input type="text" id="ref2Relation"></div>
+        </div>
+        <div class="row"><div class="col full-width"><label for="ref2Address">पता:</label><textarea id="ref2Address" rows="2"></textarea></div></div>
+        <div class="row five-cols">
+          <div class="col"><label for="ref2State">राज्य:</label><input type="text" id="ref2State"></div>
+          <div class="col">
+            <label>पिन कोड:</label>
+            <div class="digit-boxes" data-group="ref2pin">
+              <input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric">
+            </div>
+          </div>
+          <div class="col">
+            <label>मो.नं.:</label>
+            <div class="digit-boxes" data-group="ref2mobile">
+              <input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WIDOW / WIDOWER / DIVORCEE ============ -->
+    <section class="form-section widow-section">
+      <h3 class="section-title">विधवा / विधुर / तलाक़शुदा प्रत्याशी हेतु</h3>
+
+      <div class="row">
+        <div class="col"><label for="prevSpouseName">पूर्व पति/पत्नि का नाम:</label><input type="text" id="prevSpouseName"></div>
+        <div class="col"><label for="prevFatherInLaw">पूर्व ससुर का नाम:</label><input type="text" id="prevFatherInLaw"></div>
+      </div>
+      <div class="row">
+        <div class="col full-width"><label for="prevAddress">पूर्व ससुराल का पता:</label><textarea id="prevAddress" rows="2"></textarea></div>
+      </div>
+      <div class="row">
+        <div class="col three-col"><label>संतान की जानकारी (यदि हो तो) — पुत्र:</label><input type="number" id="sonsCount" min="0"></div>
+        <div class="col three-col"><label>पुत्री:</label><input type="number" id="daughtersCount" min="0"></div>
+      </div>
+
+      <div class="notice" style="margin-top:6px;">
+        <p style="margin:0;font-size:.9em;line-height:1.75;color:var(--muted);">
+          <strong style="color:var(--maroon);">नोट:</strong> विधवा/विधुर की स्थिति में मृत्यु प्रमाण पत्र की छायाप्रति व तलाक की स्थिति में न्यायालय द्वारा प्रदत्त तलाकनामा प्रमाण की छायाप्रति आवेदन पत्र के साथ संलग्न कर जमा करना अनिवार्य है, अन्यथा प्रत्याशी पंजीयन प्रपत्र निरस्त कर दिया जावेगा।
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ DOCUMENT UPLOAD ============ -->
+    <section class="form-section documents">
+      <h3 class="section-title">दस्तावेज़ अपलोड करें</h3>
+      <p class="section-sub">कृपया नीचे बताए गए प्रारूप एवं आकार में ही फोटो अपलोड करें।</p>
+
+      <div class="doc-upload-grid">
+        <div class="doc-card">
+          <h4>प्रत्याशी की फोटो <span class="req-tag">आवश्यक</span></h4>
+          <div class="drop-zone" id="docDropZone">
+            <strong>क्लिक करें</strong> या फोटो यहाँ खींच कर छोड़ें
+          </div>
+          <img class="doc-preview" id="docPreview" alt="अपलोड की गई फोटो">
+          <div class="file-status" id="docFileStatus"></div>
+          <div class="doc-specs">
+            स्वीकृत प्रारूप: JPEG, JPG, PNG &nbsp;•&nbsp; अधिकतम आकार: 2 MB<br>
+            अनुशंसित अनुपात: 35:45 (पासपोर्ट साइज़, लगभग 0.78) &nbsp;•&nbsp; न्यूनतम रिज़ॉल्यूशन: 200×257 px
+          </div>
+        </div>
+
+        <div class="doc-card">
+          <h4>अन्य दस्तावेज़ (पहचान पत्र / कुंडली आदि) <span class="opt-tag">वैकल्पिक</span></h4>
+          <div class="drop-zone" id="otherDropZone">
+            <strong>क्लिक करें</strong> या फ़ाइल यहाँ खींच कर छोड़ें
+          </div>
+          <div class="file-status" id="otherFileStatus"></div>
+          <div class="doc-specs">स्वीकृत प्रारूप: JPEG, PNG, PDF &nbsp;•&nbsp; अधिकतम आकार: 5 MB</div>
+        </div>
+      </div>
+
+      <input type="file" id="photoFileInput" accept="image/jpeg,image/jpg,image/png" style="display:none">
+      <input type="file" id="otherFileInput" accept="image/jpeg,image/jpg,image/png,application/pdf" style="display:none">
+    </section>
+
+    <!-- ============ DECLARATION ============ -->
+    <section class="form-section declaration-section">
+      <h3 class="section-title">घोषणा</h3>
+      <div class="declaration">
+        <label>
+          <input type="checkbox" id="declareCheck" required>
+          <span><strong>वचन पत्र:</strong> मैं वचन देता हूँ/देती हूँ कि इस आवेदन पत्र में दिये गये विवरण पूर्णतः सत्य एवं सही हैं। इसकी प्रमाणिकता के लिये मैं स्वयं उत्तरदायी हूँ। आयोजन समिति किसी भी संदर्भ/बात के लिये उत्तरदायी नहीं होगी। उपरोक्त विवरण, मैं विवाह बंधन (परिचय पत्रिका) 2022 में प्रकाशनार्थ प्रस्तुत कर रहा हूँ/रही हूँ। इसके साथ ही आवेदन पत्र में मुद्रित सभी नियमों को मैंने पूर्णतः पढ़ लिये हैं, जिसका मैं पालन करूंगा/करूंगी।</span>
+        </label>
+      </div>
+      <div class="row" style="margin-top:18px;">
+        <div class="col full-width"><label for="declSign">प्रत्याशी / पालक / अभिभावक का नाम:</label><input type="text" id="declSign" placeholder="अपना पूरा नाम टाइप करें"></div>
+      </div>
+      <div class="row">
+        <div class="col"><label for="declDate">हस्ताक्षर दिनांक:</label><input type="date" id="declDate"></div>
+        <div class="col"><label for="declPlace">स्थान:</label><input type="text" id="declPlace"></div>
+      </div>
+
+      <div class="office-use">
+        <div class="office-use-tag">कार्यालय उपयोग हेतु</div>
+        <div class="row">
+          <div class="col"><label for="regNo">पंजीयन क्रमांक:</label><input type="text" id="regNo" disabled placeholder="कार्यालय द्वारा भरा जायेगा"></div>
+          <div class="col"><label for="regDate">पंजीयन दिनांक:</label><input type="text" id="regDate" disabled placeholder="कार्यालय द्वारा भरा जायेगा"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NOTICE ============ -->
+    <section class="form-section notes">
+      <div class="notice">
+        <h4>सूचना / नियम एवं शर्तें</h4>
+        <ol>
+          <li>यदि आपके द्वारा गूगल फॉर्म भरा गया है तो कृपया इसे न भरें।</li>
+          <li>वैकल्पिक चाही गई प्रत्येक जानकारी चिन्हित अवश्य करें, साथ ही चाही गई समस्त जानकारी का ब्यौरा उपलब्ध करावें।</li>
+          <li>प्रत्याशी का विवरण परिचय पुस्तिका में नि:शुल्क प्रकाशित किया जायेगा।</li>
+          <li>फार्म की फोटोकॉपी भी मान्य होगी।</li>
+        </ol>
+      </div>
+    </section>
+
+    <div class="submit-container">
+      <button type="submit" class="submit-btn">पत्रक जमा करें</button>
+      <div class="form-msg" id="formMsg">कृपया लाल चिह्नित सभी आवश्यक फ़ील्ड सही तरीके से भरें।</div>
+    </div>
+  </form>
+
+  <!-- ============ SUCCESS PANEL ============ -->
+  <div class="success-panel" id="successPanel">
+    <div class="tick">&#10003;</div>
+    <h2>पंजीयन सफलतापूर्वक प्राप्त हुआ</h2>
+    <p><span id="successName"></span> जी, आपका पंजीयन पत्रक सफलतापूर्वक भरा गया है।</p>
+    <p>पंजीयन क्रमांक: <span class="reg-id" id="regId"></span></p>
+    <div class="success-actions">
+      <button class="primary" onclick="window.print()">प्रिंट करें</button>
+      <button onclick="location.reload()">नया पत्रक भरें</button>
+    </div>
+  </div>
+
+  <footer class="form-footer">
+
+    <h3 class="submission-addresses-title">पंजीयन फार्म भेजने का पता</h3>
+    <div class="submission-addresses">
+      <div class="addr"><span class="num">1.</span> स्वप्निल जैन, सजल कॉर्पोरेशन, गांधी गंज, जैन मंदिर रोड, छिंदवाड़ा (म.प्र.) पिन कोड- 480002</div>
+      <div class="addr"><span class="num">2.</span> शैलेन्द्र जैन, ऋषभ जैन मोबाईल शॉप, राजीव गांधी बस स्टेण्ड, छिंदवाड़ा (म.प्र.) पिन कोड- 480001</div>
+    </div>
+    <div class="contacts">
+      कार्यालय का ईमेल आईडी : vivahbandhancwa@gmail.com<br>
+      पंजीयन संबंधी जानकारी हेतु संपर्क : मो. 8461941001 / 8516941001
+    </div>
+  </footer>
+</div>
+
+<script>
+/* ---------------- Toran garland (signature element) ---------------- */
+(function drawToran(){
+  const holder = document.getElementById('toran');
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS,"svg");
+  svg.setAttribute("viewBox","0 0 1000 34");
+  svg.setAttribute("preserveAspectRatio","none");
+  const count = 26;
+  const spacing = 1000/count;
+  const line = document.createElementNS(svgNS,"line");
+  line.setAttribute("x1","0"); line.setAttribute("y1","4"); line.setAttribute("x2","1000"); line.setAttribute("y2","4");
+  line.setAttribute("stroke","#E8C77A"); line.setAttribute("stroke-width","1.5");
+  svg.appendChild(line);
+  for(let i=0;i<count;i++){
+    const cx = spacing*i + spacing/2;
+    const color = i%2===0 ? "#C99A3E" : "#7B1428";
+    const drop = document.createElementNS(svgNS,"path");
+    const r = 7;
+    const d = `M ${cx} 6 C ${cx-r} 10, ${cx-r} 22, ${cx} 28 C ${cx+r} 22, ${cx+r} 10, ${cx} 6 Z`;
+    drop.setAttribute("d", d);
+    drop.setAttribute("fill", color);
+    svg.appendChild(drop);
+    const dot = document.createElementNS(svgNS,"circle");
+    dot.setAttribute("cx", cx); dot.setAttribute("cy","4"); dot.setAttribute("r","2");
+    dot.setAttribute("fill","#F0D48E");
+    svg.appendChild(dot);
+  }
+  holder.appendChild(svg);
+})();
+
+/* ---------------- Digit box auto-advance ---------------- */
+document.querySelectorAll('.digit-boxes').forEach(group=>{
+  const inputs = Array.from(group.querySelectorAll('input'));
+  inputs.forEach((inp, idx)=>{
+    inp.addEventListener('input', ()=>{
+      inp.value = inp.value.replace(/[^0-9]/g,'').slice(0,1);
+      if(inp.value && idx < inputs.length-1){ inputs[idx+1].focus(); }
+    });
+    inp.addEventListener('keydown', (e)=>{
+      if(e.key === 'Backspace' && !inp.value && idx>0){ inputs[idx-1].focus(); }
+    });
+  });
+});
+function groupValue(name){
+  const group = document.querySelector(`.digit-boxes[data-group="${name}"]`);
+  if(!group) return "";
+  return Array.from(group.querySelectorAll('input')).map(i=>i.value).join('');
+}
+
+/* ---------------- Photo upload + validation ---------------- */
+const photoFrame = document.getElementById('photoFrame');
+const photoFileInput = document.getElementById('photoFileInput');
+const photoPreview = document.getElementById('photoPreview');
+const photoPlaceholder = document.getElementById('photoPlaceholder');
+const photoRemoveBtn = document.getElementById('photoRemoveBtn');
+const docDropZone = document.getElementById('docDropZone');
+const docPreview = document.getElementById('docPreview');
+const docFileStatus = document.getElementById('docFileStatus');
+
+let photoValid = false;
+
+photoFrame.addEventListener('click', ()=> photoFileInput.click());
+photoFrame.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' ') photoFileInput.click(); });
+docDropZone.addEventListener('click', ()=> photoFileInput.click());
+['dragover','dragleave','drop'].forEach(evt=>{
+  docDropZone.addEventListener(evt, e=>{
+    e.preventDefault();
+    docDropZone.classList.toggle('dragover', evt==='dragover');
+    if(evt==='drop' && e.dataTransfer.files[0]){
+      handlePhotoFile(e.dataTransfer.files[0]);
+    }
+  });
+});
+photoFileInput.addEventListener('change', ()=>{
+  if(photoFileInput.files[0]) handlePhotoFile(photoFileInput.files[0]);
+});
+
+function formatSize(bytes){
+  return bytes >= 1048576 ? (bytes/1048576).toFixed(2)+" MB" : (bytes/1024).toFixed(0)+" KB";
+}
+
+function handlePhotoFile(file){
+  const allowedTypes = ['image/jpeg','image/jpg','image/png'];
+  const maxSize = 2*1024*1024;
+  const messages = [];
+  let typeOk = allowedTypes.includes(file.type);
+  let sizeOk = file.size <= maxSize;
+
+  messages.push({ok: typeOk, text: typeOk ? "प्रारूप सही है (JPEG/PNG)" : "अमान्य प्रारूप — केवल JPEG/PNG स्वीकृत"});
+  messages.push({ok: sizeOk, text: (sizeOk ? "आकार सही है: " : "आकार बहुत बड़ा है: ") + formatSize(file.size) + " (अधिकतम 2 MB)"});
+
+  if(!typeOk){
+    renderDocStatus(messages, false);
+    photoValid = false;
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = (e)=>{
+    const img = new Image();
+    img.onload = ()=>{
+      const ratio = img.naturalWidth / img.naturalHeight;
+      const ratioOk = ratio >= 0.65 && ratio <= 0.90;
+      const resOk = img.naturalWidth >= 200 && img.naturalHeight >= 257;
+      messages.push({ok: ratioOk, text: `अनुपात: ${ratio.toFixed(2)} (अनुशंसित 0.65–0.90, आदर्श 0.78 पासपोर्ट साइज़)`});
+      messages.push({ok: resOk, text: `रिज़ॉल्यूशन: ${img.naturalWidth}×${img.naturalHeight}px ${resOk ? '' : '(न्यूनतम 200×257px आवश्यक)'}`});
+
+      photoValid = typeOk && sizeOk && ratioOk && resOk;
+      renderDocStatus(messages, photoValid);
+
+      photoPreview.src = e.target.result;
+      photoPreview.style.display = 'block';
+      photoPlaceholder.style.display = 'none';
+      photoRemoveBtn.style.display = 'inline-block';
+      photoFrame.style.borderColor = photoValid ? 'var(--success)' : 'var(--error)';
+
+      docPreview.src = e.target.result;
+      docPreview.style.display = 'block';
+    };
+    img.onerror = ()=>{
+      messages.push({ok:false, text:"फोटो पढ़ी नहीं जा सकी, कृपया दूसरी फ़ाइल चुनें"});
+      photoValid = false;
+      renderDocStatus(messages, false);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function renderDocStatus(messages, overallOk){
+  docFileStatus.innerHTML = messages.map(m=>
+    `<div class="check-row">${m.ok ? '&#10003;' : '&#10007;'} <span>${m.text}</span></div>`
+  ).join('');
+  docFileStatus.className = 'file-status ' + (overallOk ? 'ok' : 'bad');
+}
+
+photoRemoveBtn.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  photoFileInput.value = '';
+  photoPreview.src = '';
+  photoPreview.style.display = 'none';
+  photoPlaceholder.style.display = 'block';
+  photoRemoveBtn.style.display = 'none';
+  photoFrame.style.borderColor = 'var(--gold)';
+  docFileStatus.className = 'file-status';
+  docFileStatus.innerHTML = '';
+  docPreview.style.display = 'none';
+  photoValid = false;
+});
+
+/* ---------------- Other document upload ---------------- */
+const otherDropZone = document.getElementById('otherDropZone');
+const otherFileInput = document.getElementById('otherFileInput');
+const otherFileStatus = document.getElementById('otherFileStatus');
+otherDropZone.addEventListener('click', ()=> otherFileInput.click());
+['dragover','dragleave','drop'].forEach(evt=>{
+  otherDropZone.addEventListener(evt, e=>{
+    e.preventDefault();
+    otherDropZone.classList.toggle('dragover', evt==='dragover');
+    if(evt==='drop' && e.dataTransfer.files[0]) handleOtherFile(e.dataTransfer.files[0]);
+  });
+});
+otherFileInput.addEventListener('change', ()=>{
+  if(otherFileInput.files[0]) handleOtherFile(otherFileInput.files[0]);
+});
+function handleOtherFile(file){
+  const allowed = ['image/jpeg','image/jpg','image/png','application/pdf'];
+  const ok = allowed.includes(file.type) && file.size <= 5*1024*1024;
+  otherFileStatus.className = 'file-status ' + (ok ? 'ok' : 'bad');
+  otherFileStatus.innerHTML = `<div class="check-row">${ok ? '&#10003;' : '&#10007;'} <span>${file.name} — ${formatSize(file.size)}</span></div>`;
+}
+
+/* ---------------- Form submit ---------------- */
+document.getElementById('regForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  let firstInvalid = null;
+  const requiredFields = ['fullName','fatherName','motherName','permanentAddress'];
+
+  requiredFields.forEach(id=>{
+    const el = document.getElementById(id);
+    const bad = !el.value.trim();
+    el.classList.toggle('invalid', bad);
+    if(bad && !firstInvalid) firstInvalid = el;
+  });
+
+  const mobile = groupValue('mobile');
+  const mobileGroup = document.querySelector('.digit-boxes[data-group="mobile"]');
+  const mobileBad = mobile.length !== 10;
+  mobileGroup.style.outline = mobileBad ? '2px solid var(--error)' : 'none';
+  mobileGroup.style.borderRadius = '8px';
+  if(mobileBad && !firstInvalid) firstInvalid = mobileGroup;
+
+  const declareCheck = document.getElementById('declareCheck');
+  if(!declareCheck.checked && !firstInvalid) firstInvalid = declareCheck;
+
+  const photoBad = !photoValid;
+  photoFrame.style.borderColor = photoBad ? 'var(--error)' : 'var(--success)';
+  if(photoBad && !firstInvalid) firstInvalid = photoFrame;
+
+  const msg = document.getElementById('formMsg');
+  if(firstInvalid){
+    msg.style.display = 'block';
+    firstInvalid.scrollIntoView({behavior:'smooth', block:'center'});
+    if(firstInvalid.focus) firstInvalid.focus();
+    return;
+  }
+  msg.style.display = 'none';
+
+  const regId = 'VB-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random()*9000);
+  document.getElementById('successName').textContent = document.getElementById('fullName').value.trim();
+  document.getElementById('regId').textContent = regId;
+
+  document.getElementById('regForm').style.display = 'none';
+  document.querySelector('.form-footer').style.display = 'none';
+  document.getElementById('successPanel').style.display = 'block';
+  document.getElementById('successPanel').scrollIntoView({behavior:'smooth'});
+});
+
+/* clear invalid state as user types */
+document.querySelectorAll('input, textarea').forEach(el=>{
+  el.addEventListener('input', ()=> el.classList.remove('invalid'));
+});
+</script>
+</body>
+</html>
